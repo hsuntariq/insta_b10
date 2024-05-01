@@ -1,60 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include './boot_css.php';
     include './config.php';
     ?>
+
+    <style>
+        ::-webkit-scrollbar{
+            width: 2px;
+            height: 5px;
+
+        }
+
+        ::-webkit-scrollbar-thumb{
+            width: 2px;
+            background:linear-gradient(orange,purple,blue);
+            height: 5px;
+        }
+    </style>
     <title>Document</title>
 </head>
+
 <body>
-    
+
+
+    <!-- <div style="right:0;background:linear-gradient(135deg,red,orange,purple);transition:all 0.8s" class=" p-2 flash text-dark position-fixed top-0 fw-bold text-white col-md-2 ms-auto">
+                <h4><?php echo $_SESSION['welcome'] ?></h4>
+            </div> -->
 
     <?php
-        session_start();
-        
-        if(!isset($_SESSION['welcome'])){
-        header("Location: $base_url/signup.php");
-    } else {
-        ?>
 
-            <div style="right:0" class="bg-warning text-dark position-fixed top-0 fw-bold col-md-2 ms-auto">
+
+    session_start();
+    if (!isset($_SESSION['welcome']) && !isset($_SESSION['name'])) {
+        header("Location: http://localhost/insta_b10/signup.php");
+    } else {
+        if (isset($_SESSION['welcome'])) {
+    ?>
+
+            <div style="right:0;background:linear-gradient(135deg,red,orange,purple);transition:all 0.8s" class=" p-2 flash text-dark position-fixed top-0 fw-bold text-white col-md-2 ms-auto">
                 <h4><?php echo $_SESSION['welcome'] ?></h4>
             </div>
+    <?php
+        }
+    }
+    ?>
 
-            <?php } ?>
 
 
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-2git  p-4 border" style="height:100vh;">
-                        <div class="d-flex flex-column" style="height:100%">
-                             <img width="40%" class="mx-auto d-block" src="https://cdn2.downdetector.com/static/uploads/logo/Instagram_Logo_Large.png" alt="">
-                             <ul style="height:100%" class="flex flex-column   list-unstyled fs-4 text-capitalize fw-medium">
-                                <li class='my-5'><i class="bi bi-house-door-fill"></i>  Home</li>
-                                <li class='my-5'><i class="bi bi-search"></i> Explore</li>
-                                <li class='my-5'><i class="bi bi-messenger"></i> Messages</li>
-                                <li class='my-5'><i class="bi bi-heart"></i> Notifications</li>
-                                <li class='my-5'><i class="bi bi-plus-square"></i> create</li>
-                                <li class='justify-self-end'><i class="bi bi-person"></i> Profile</li>
 
-                             </ul>
-                        </div>
-                        
-                    </div>
-                    <div class="col-lg-6"></div>
-                    <div class="col-lg-3"></div>
-                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2   p-4 border" style="height:100vh;">
+                <?php include './sidebar.php' ?>
+
             </div>
+            <div class="col-lg-7 bg-light">
+
+                <div class="col-lg-6 mx-auto" style="height:98vh; overflow-y:scroll">
+                    <div class="card p-4 my-3 border">
+                        <div class="d-flex gap-4">
+                            <?php include './stories.php' ?>
+                        </div>
+                    </div>
+
+                    <?php include './posts.php' ?>
+
+
+                </div>
+
+
+
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
 
 
 
 
-            
-        <!-- <a  href="./logout.php" class="btn btn-danger">
+
+    <?php  
+    
+        include './boot_js.php'
+    ?>
+
+
+    <script>
+
+        let flash = document.querySelector('.flash');
+        setTimeout(() => {
+            flash.style.transform = 'translateX(100%)'
+        }, 3000)
+    </script>
+
+
+
+    <?php
+    unset($_SESSION['welcome'])
+
+    ?>
+
+
+    <!-- <a  href="./logout.php" class="btn btn-danger">
             Logout
         </a> -->
 
 </body>
+
 </html>
