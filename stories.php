@@ -1,3 +1,19 @@
+
+<?php
+    include './config.php';
+    $select = "SELECT * FROM story";
+    $result = mysqli_query($connection,$select);
+    if(mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_assoc($result)){
+            // print_r($row);
+?>
+
+
 <div class="image ">
-    <img class="rounded-circle" width="70px" height="70px" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" alt="">
+    
+    <img style="object-fit: cover;" class="rounded-circle" width="70px" height="70px" src="./images/<?php echo $row['image'] ?>" alt=""> 
 </div>
+
+<?php 
+        }}
+?>

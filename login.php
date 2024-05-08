@@ -25,6 +25,7 @@ if(mysqli_num_rows($result) > 0){
     while($row = mysqli_fetch_assoc($result)){
         $_SESSION['welcome'] = 'Welcome ' . $row['fullname'];
         $_SESSION['name'] = $row['fullname'];
+        $_SESSION['id'] = $row['id'];
     }
     header("Location: $base_url/home.php");
 }else{

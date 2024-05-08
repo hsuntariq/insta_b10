@@ -3,7 +3,9 @@
                     <ul style="height:100%" class="flex flex-column   list-unstyled fs-4 text-capitalize fw-medium">
                         <li class='my-5'><i class="bi bi-house-door-fill"></i> Home</li>
                         <li class='my-5'><i class="bi bi-search"></i> Explore</li>
-                        <li class='my-5'><i class="bi bi-messenger"></i> Messages</li>
+                        <li class='my-5'>
+                            <?php include './postModal.php' ?>
+                        </li>
                         <li class='my-5'><i class="bi bi-heart"></i> Notifications</li>
                         <li class='my-5'>
                             <?php include './storyModal.php' ?>

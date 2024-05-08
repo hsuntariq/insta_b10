@@ -25,6 +25,7 @@ else{
     if($result){
         $_SESSION['name'] = $username;
         $_SESSION['welcome'] = 'Welcome ' . $fullname;
+        $_SESSION['id'] = mysqli_insert_id($connection);
         header("Location: $base_url/home.php");
     }
 }
